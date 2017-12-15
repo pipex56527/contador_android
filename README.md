@@ -1,2 +1,0 @@
-# contador_android
-EJERCICIO CONTADOR CURSO ANDROID
