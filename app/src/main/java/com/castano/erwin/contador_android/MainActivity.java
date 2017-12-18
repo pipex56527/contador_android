@@ -1,8 +1,7 @@
-package com.castano.erwin.calculadora2;
+package com.castano.erwin.contador_android;
 
 
         import android.app.Activity;
-        import android.graphics.Color;
         import android.os.Bundle;
         import android.view.KeyEvent;
         import android.view.View;
