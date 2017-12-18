@@ -2,7 +2,9 @@ package com.castano.erwin.contador_android;
 
 
         import android.app.Activity;
+        import android.content.SharedPreferences;
         import android.os.Bundle;
+        import android.preference.PreferenceManager;
         import android.view.KeyEvent;
         import android.view.View;
         import android.view.inputmethod.EditorInfo;
@@ -33,6 +35,7 @@ public class MainActivity extends Activity {
         //valorReseteaEditText.setOnEditorActionListener(teclado); //escuchar el teclado
 
     }
+/*
 
     //estos dos metodos permiten que la información del contador persista aunque la actividad se reinicie (por ejemplo al girar el dispositivo)
     public void onSaveInstanceState(Bundle estado){
@@ -50,6 +53,22 @@ public class MainActivity extends Activity {
 
 
     }
+*/
+//Uso de shared preferences para persistencia de datos
+public void onPause(){
+    super.onPause();
+    SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
+    SharedPreferences.Editor miEditor = datos.edit();
+    miEditor.putInt("cuenta", contador);
+    miEditor.apply();
+}
+
+public void onResume(){
+    super.onResume();
+    SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
+    contador = datos.getInt("cuenta",0); //el segundo parámetro es el valor por defecto si no encuentra la clave
+    contadorTextView.setText(""+contador);
+}
 
     class EventoTeclado implements TextView.OnEditorActionListener{ //clase interna para que al presionar ok en el teclado, se resetee el contador
 
